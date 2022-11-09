@@ -40,6 +40,7 @@ Contributors names and contact info
 
 ex. Chris Cozort  
 ex. ccozort@bcp.org
+scott.smith24@bcp.org
 
 ## Version History
 
