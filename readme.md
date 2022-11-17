@@ -38,8 +38,7 @@ command to run if program contains helper info
 
 Contributors names and contact info
 
-ex. Chris Cozort  
-ex. ccozort@bcp.org
+Scott Smith
 scott.smith24@bcp.org
 
 ## Version History
