@@ -1,12 +1,11 @@
 # introToProgrammingFinalProjectP1
 # Path Attack...
 
-Using Djikstra's algorithm to get enemies to pass around walls.  
-
+A character or being chasing after an object, with the ability to change ones character as well as what it is they are
+chasing
 ## Description
 
-A top down 2d game where enemies chase the player around walls.  
-
+A 2d game with interchangable characters and interchangable end-goals.
 ## Getting Started
 
 ### Dependencies
