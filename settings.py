@@ -1,5 +1,5 @@
-WIDTH = 560
-HEIGHT = 680
+WIDTH = 860
+HEIGHT = 780
 FPS = 30
 mpos = (0,0)
 
