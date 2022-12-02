@@ -49,3 +49,27 @@ class Player(Sprite):
         self.pos = vec(WIDTH/2, HEIGHT-45)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
+
+
+pg.init()
+pg.mixer.init()
+screen = pg.display.set_mode((WIDTH, HEIGHT))
+pg.display.set_caption("Cheese Chaser v0.1")
+clock = pg.time.Clock()
+
+all_sprites = pg.sprite.Group()
+player = Player()
+
+start_ticks = pg.time.get_ticks()
+running = True
+while running:
+    # keep the loop running using clock
+    clock.tick(FPS)
+    all_sprites.update()
+    screen.fill(LIGHTGRAY)
+#     draw_text("TIME: " + str(TIME), 22, WHITE, WIDTH / 2, HEIGHT / 24)
+    player.image.fill((player.r,player.g,player.b))
+    all_sprites.update()
+    all_sprites.draw(screen)
+    pg.display.flip()
+pg.quit()
