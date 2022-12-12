@@ -33,9 +33,13 @@ from settings import *
 
 #utility
 
+#asset folders
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, 'characters')
+
 #main body 
 
-
+#set up the ability to have text within my game
 def draw_text(text, size, color, x, y):
         font_name = pg.font.match_font('arial')
         font = pg.font.Font(font_name, size)
@@ -44,25 +48,20 @@ def draw_text(text, size, color, x, y):
         text_rect.midtop = (x, y)
         screen.blit(text_surface, text_rect)
 
-
+#create the Player sprite with controls (set up to be in a 2d plane, so no 'jump' or gravity)
 class Player(Sprite):
  def __init__(self):
         Sprite.__init__(self)
-        self.image = pg.Surface((50, 50))
+        self.image = pg.image.load(os.path.join(img_folder, 'My project.png')).convert()
         self.r = 0
         self.g = 0
         self.b = 255
-        self.image.fill((self.r,self.g,self.b))
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.pos = vec(WIDTH/2, HEIGHT-45)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         print(self.rect.center)
- def jump(self):
-        hits = pg.sprite.spritecollide(self, False)
-        if hits:
-            # print("i can jump")
-            self.vel.y = -PLAYER_JUMP
  def controls(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
@@ -73,8 +72,6 @@ class Player(Sprite):
              self.acc.y = -5
         if keys[pg.K_s]:
              self.acc.y = 5
-        if keys[pg.K_SPACE]:
-            self.jump()
  def update(self):
     self.acc = vec(0,)
     self.controls()
@@ -88,22 +85,23 @@ class Player(Sprite):
         self.rect.y = 0
     self.rect.midbottom = self.pos
 
-#  class Cheese
+#  set up the 'cheese' class, aka the objective of game
 # class Cheese(Sprite):
 #     def __init__
 
+#set up pygame making it ready to run, set the display and name of game 
 pg.init()
 pg.mixer.init()
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 pg.display.set_caption("Cheese Chaser v0.1")
 clock = pg.time.Clock()
 
+#group sprites
 all_sprites = pg.sprite.Group()
 player = Player()
 all_sprites.add(player)
 
-
-# start_ticks = pg.time.get_ticks()
+#set up the parameters of game, set up the magenta background
 running = True
 while running:
     clock.tick(FPS)
@@ -111,7 +109,9 @@ while running:
         if event.type == pg.QUIT:
             running = False
     all_sprites.update()
-    screen.fill(LIGHTGRAY)
+    screen.fill(MAGENTA)
     all_sprites.draw(screen)
     pg.display.flip()  
+
+#close pygame
 pg.quit()
