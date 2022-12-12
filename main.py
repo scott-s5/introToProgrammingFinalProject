@@ -49,7 +49,7 @@ def draw_text(text, size, color, x, y):
 class Player(Sprite):
  def __init__(self):
         Sprite.__init__(self)
-        self.image = pg.image.load(os.path.join(img_folder, 'LeftMouse.png')).convert()
+        self.image = pg.image.load(os.path.join(img_folder, 'MainMouse.png')).convert()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.pos = vec(WIDTH/2, HEIGHT-45)
@@ -60,8 +60,12 @@ class Player(Sprite):
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
             self.acc.x = -5   
+            self.image = pg.image.load(os.path.join(img_folder, 'LeftMouse.png')).convert()
+            self.image.set_colorkey(BLACK)
         if keys[pg.K_d]:
             self.acc.x = 5
+            self.image = pg.image.load(os.path.join(img_folder, 'RightMouse.png')).convert()
+            self.image.set_colorkey(BLACK)
         if keys[pg.K_w]:
              self.acc.y = -5
         if keys[pg.K_s]:
