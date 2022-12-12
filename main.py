@@ -1,4 +1,7 @@
 ''' 
+
+Scott Smith IntroToProgrammingFinal Project
+
 overview of game
 
 Base game: Mouse character must catch the cheese, which moves at random speeds and directions, difficulty can be set
@@ -7,6 +10,7 @@ Base game: Mouse character must catch the cheese, which moves at random speeds a
 
 
 # sources: 
+# Discussed some aspects with Mr. Cozort, in-class projects, 
 
 #import libraries
 import pygame as pg
@@ -16,13 +20,16 @@ import os
 from random import randint 
 import time
 vec = pg.math.Vector2
+from settings import * 
+
 # build in 
 
 # installed modules or libraries 
+#Pygame
 
-# created modules or libraries
-from settings import * 
+
 #global variables
+#pygame as pg
 
 #utility
 
@@ -51,6 +58,11 @@ class Player(Sprite):
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         print(self.rect.center)
+ def jump(self):
+        hits = pg.sprite.spritecollide(self, False)
+        if hits:
+            # print("i can jump")
+            self.vel.y = -PLAYER_JUMP
  def controls(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
@@ -63,13 +75,8 @@ class Player(Sprite):
              self.acc.y = 5
         if keys[pg.K_SPACE]:
             self.jump()
-def jump(self):
-        hits = pg.sprite.spritecollide(self, False)
-        if hits:
-            print("i can jump")
-            self.vel.y = -PLAYER_JUMP
-def update(self):
-    self.acc = vec(0,PLAYER_GRAV)
+ def update(self):
+    self.acc = vec(0,)
     self.controls()
     self.acc.x += self.vel.x * -0.2
     self.acc.y += self.vel.y * -0.2
@@ -81,7 +88,9 @@ def update(self):
         self.rect.y = 0
     self.rect.midbottom = self.pos
 
-# class Cheese
+#  class Cheese
+# class Cheese(Sprite):
+#     def __init__
 
 pg.init()
 pg.mixer.init()
@@ -99,30 +108,10 @@ running = True
 while running:
     clock.tick(FPS)
     for event in pg.event.get():
-        # check for closed window
         if event.type == pg.QUIT:
             running = False
     all_sprites.update()
-    if player.vel.y > 0:
-        hits = pg.sprite.spritecollide(player, False)
-        if hits:
-            # SCORE += 1
-            if player.rect.bottom <= hits[0].rect.top + 5:
-                player.pos.y = hits[0].rect.top
-                player.vel.y = 0
-    if player.vel.y < 0:
-        hits = pg.sprite.spritecollide(player, False)
-        if hits:
-            # SCORE -= 1
-            if player.rect.bottom >= hits[0].rect.top - 5:
-                player.rect.top = hits[0].rect.bottom
-                player.acc.y = 5
-                player.vel.y = 0
-    # player.image.fill((player.r,player.g,player.b))
-    # all_sprites.update()
-    # all_sprites.draw(screen)
     screen.fill(LIGHTGRAY)
     all_sprites.draw(screen)
-    # draw_text(22, WHITE, WIDTH / 2, HEIGHT / 24)
     pg.display.flip()  
 pg.quit()
