@@ -28,9 +28,6 @@ from settings import *
 #Pygame
 
 
-#global variables
-#pygame as pg
-
 #utility
 
 #asset folders
@@ -52,10 +49,7 @@ def draw_text(text, size, color, x, y):
 class Player(Sprite):
  def __init__(self):
         Sprite.__init__(self)
-        self.image = pg.image.load(os.path.join(img_folder, 'My project.png')).convert()
-        self.r = 0
-        self.g = 0
-        self.b = 255
+        self.image = pg.image.load(os.path.join(img_folder, 'LeftMouse.png')).convert()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.pos = vec(WIDTH/2, HEIGHT-45)
@@ -65,7 +59,7 @@ class Player(Sprite):
  def controls(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
-            self.acc.x = -5
+            self.acc.x = -5   
         if keys[pg.K_d]:
             self.acc.x = 5
         if keys[pg.K_w]:
