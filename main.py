@@ -89,12 +89,15 @@ class Player(Sprite):
     self.rect.midbottom = self.pos
 
 #  set up the 'cheese' class, aka the objective of game
-class Cheese(Sprite):
-    self.image = pg.image.load(os.path.join(img_folder, 'CHEESE.png')).convert()
-    self.image.set_colorkey(BLACK)
-    def __init__(self, x, y, width, height, end):
-    self.x = x
-    self.y = y
+class cheese(Sprite):
+    def __init__(self, x, y, w, h,):
+        Sprite.__init__(self)
+        self.image = pg.image.load(os.path.join(img_folder, 'CHEESE.png')).convert()
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        print(self.rect.center)
 
 #set up pygame making it ready to run, set the display and name of game 
 pg.init()
@@ -105,8 +108,11 @@ clock = pg.time.Clock()
 
 #group sprites
 all_sprites = pg.sprite.Group()
+all_platforms = pg.sprite.Group()
 player = Player()
+cheese = cheese(150, 300, 100, 30)
 all_sprites.add(player)
+all_platforms.add(cheese)
 
 #set up the parameters of game, set up the magenta background
 running = True
