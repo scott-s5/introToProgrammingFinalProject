@@ -89,8 +89,12 @@ class Player(Sprite):
     self.rect.midbottom = self.pos
 
 #  set up the 'cheese' class, aka the objective of game
-# class Cheese(Sprite):
-#     def __init__
+class Cheese(Sprite):
+    self.image = pg.image.load(os.path.join(img_folder, 'CHEESE.png')).convert()
+    self.image.set_colorkey(BLACK)
+    def __init__(self, x, y, width, height, end):
+    self.x = x
+    self.y = y
 
 #set up pygame making it ready to run, set the display and name of game 
 pg.init()
@@ -112,7 +116,7 @@ while running:
         if event.type == pg.QUIT:
             running = False
     all_sprites.update()
-    screen.fill(MAGENTA)
+    screen.fill(DARKGRAY)
     all_sprites.draw(screen)
     pg.display.flip()  
 
