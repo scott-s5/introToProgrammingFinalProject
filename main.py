@@ -1,7 +1,5 @@
-''' 
-
-Scott Smith IntroToProgrammingFinal Project
-
+# Scott Smith IntroToProgrammingFinal Project
+'''
 overview of game
 
 Base game: Mouse character must catch the cheese, which moves at random speeds and directions, difficulty can be set
