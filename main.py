@@ -109,12 +109,17 @@ clock = pg.time.Clock()
 #group sprites
 all_sprites = pg.sprite.Group()
 all_platforms = pg.sprite.Group()
+
+#instansiate classes
 player = Player()
 cheese = cheese(150, 300, 100, 30)
+
+#instances 
 all_sprites.add(player)
+all_sprites.add(cheese)
 all_platforms.add(cheese)
 
-#set up the parameters of game, set up the magenta background
+#set up the parameters of game, set up the dark gray background
 running = True
 while running:
     clock.tick(FPS)
