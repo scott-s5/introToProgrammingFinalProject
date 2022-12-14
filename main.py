@@ -98,6 +98,8 @@ class cheese(Sprite):
         self.x = x
         self.y = y
         print(self.rect.center)
+        #range - distance to x -> difference between cheese.rect.x and mouse.rect.x -> if getting smaller, positive/negative
+        # move cheese away in opposite direction
 
 #set up pygame making it ready to run, set the display and name of game 
 pg.init()
@@ -127,8 +129,19 @@ while running:
         if event.type == pg.QUIT:
             running = False
     all_sprites.update()
+
+    if player.vel.y > 0:
+        hits = pg.sprite.spritecollide(player, all_platforms, False)
+        if hits:
+            pass 
+    if player.vel.y < 0:
+        hits = pg.sprite.spritecollide(player, all_platforms, False)
+        if hits:
+           pass
+    #drawing the game specifics
     screen.fill(DARKGRAY)
     all_sprites.draw(screen)
+    draw_text("Score: " + str(SCORE), 22, WHITE, WIDTH/2, HEIGHT/10)
     pg.display.flip()  
 
 #close pygame
