@@ -58,19 +58,19 @@ class Player(Sprite):
  def controls(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
-            self.acc.x = -5   
+            self.acc.x = -1
             self.image = pg.image.load(os.path.join(img_folder, 'LEFTMOUSE.png')).convert()
             self.image.set_colorkey(BLACK)
         if keys[pg.K_d]:
-            self.acc.x = 5
+            self.acc.x = 1
             self.image = pg.image.load(os.path.join(img_folder, 'RIGHTMOUSE.png')).convert()
             self.image.set_colorkey(BLACK)
         if keys[pg.K_w]:
-             self.acc.y = -5
+             self.acc.y = -1
              self.image = pg.image.load(os.path.join(img_folder, 'UPMOUSE.png')).convert()
              self.image.set_colorkey(BLACK)
         if keys[pg.K_s]:
-             self.acc.y = 5
+             self.acc.y = 1
              self.image = pg.image.load(os.path.join(img_folder, 'DOWNMOUSE.png')).convert()
              self.image.set_colorkey(BLACK)
  def update(self):
