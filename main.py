@@ -58,19 +58,19 @@ class Player(Sprite):
  def controls(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_a]:
-            self.acc.x = -1
+            self.acc.x = -0.75
             self.image = pg.image.load(os.path.join(img_folder, 'LEFTMOUSE.png')).convert()
             self.image.set_colorkey(BLACK)
         if keys[pg.K_d]:
-            self.acc.x = 1
+            self.acc.x = 0.75
             self.image = pg.image.load(os.path.join(img_folder, 'RIGHTMOUSE.png')).convert()
             self.image.set_colorkey(BLACK)
         if keys[pg.K_w]:
-             self.acc.y = -1
+             self.acc.y = -0.75
              self.image = pg.image.load(os.path.join(img_folder, 'UPMOUSE.png')).convert()
              self.image.set_colorkey(BLACK)
         if keys[pg.K_s]:
-             self.acc.y = 1
+             self.acc.y = 0.75
              self.image = pg.image.load(os.path.join(img_folder, 'DOWNMOUSE.png')).convert()
              self.image.set_colorkey(BLACK)
  def update(self):
@@ -86,11 +86,12 @@ class Player(Sprite):
         self.rect.y = 0
     self.rect.midbottom = self.pos
 
-#  set up the 'cheese' class, aka the objective of game
+#  set up the 'cheese' class, aka the objective of game and the distances between player and cheese
+#  begin to set up the feardistance - distance from cheese and player 
 class Cheese(Sprite):
     def __init__(self, x, y):
         Sprite.__init__(self)
-        self.image = pg.image.load(os.path.join(img_folder, 'CHEESE.png')).convert()
+        self.image = pg.image.load(os.path.join(img_folder, 'cheese.png')).convert()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -101,6 +102,9 @@ class Cheese(Sprite):
         print(self.rect.center)
         #range - distance to x -> difference between cheese.rect.x and mouse.rect.x -> if getting smaller, positive/negative
         # move cheese away in opposite direction
+    
+    #update it so that cheese movement is dependent on mouse's distance from cheese from all four directions - 
+    # as mouse moves closer, cheese moves farther away
     def update(self):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
@@ -148,19 +152,14 @@ while running:
         if event.type == pg.QUIT:
             running = False
     all_sprites.update()
-    if player.vel.y > 0:
-        hits = pg.sprite.spritecollide(player, all_platforms, False)
-        if hits:
-            pass 
-    if player.vel.y < 0:
-        hits = pg.sprite.spritecollide(player, all_platforms, False)
-        if hits:
-           pass
-
     #drawing the game specifics
     screen.fill(DARKGRAY)
     all_sprites.draw(screen)
-    draw_text("Score: " + str(SCORE), 22, WHITE, WIDTH/2, HEIGHT/10)
+    if player.rect.colliderect(cheese.rect):
+        #endgame
+        running = False
+        pg.quit()
+
     pg.display.flip()  
 
 #close pygame
