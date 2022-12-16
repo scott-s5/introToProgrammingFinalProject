@@ -156,10 +156,9 @@ while running:
     screen.fill(DARKGRAY)
     all_sprites.draw(screen)
     if player.rect.colliderect(cheese.rect):
+        draw_text("You win!", 22, WHITE, WIDTH/2, HEIGHT/10)
         #endgame
         running = False
-        pg.quit()
-
     pg.display.flip()  
 
 #close pygame
