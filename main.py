@@ -153,7 +153,7 @@ while running:
             running = False
     all_sprites.update()
     #drawing the game specifics
-    screen.fill(DARKGRAY)
+    screen.fill(WHITE)
     all_sprites.draw(screen)
     if player.rect.colliderect(cheese.rect):
         draw_text("You win!", 22, WHITE, WIDTH/2, HEIGHT/10)
